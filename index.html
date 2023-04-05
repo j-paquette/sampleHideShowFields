@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>Sample Web Form</title>
+        <link rel="stylesheet" href="css/sample-css.css" />
+    </head>
+    <body>
+        <header>
+            <h1>commuting survey</h1>
+            <nav class="nav">
+                <ul class="nav-list">
+                    <li><a id="user-link" href="#user-info">Get Started</a></li>
+                    <li><a id="resources-link" href="#resources-info">resources</a></li>
+                    <li><a id="contact-link" href="#contact-info">contact</a></li>
+                </ul>
+            </nav>
+        </header>
+        <form>
+            <section id="user-info" class="user-section">
+                <div id="question-1" class="user">
+                    <label for="user-commute" class="form-control">do you commute to work?
+                    </label>
+                    <select id="user-commute" name="user-commute" onchange="chooseSurveyType(this)">
+                        <option disabled="" selected="" value="">select option</option>
+                        <option value="telework">telework</option>
+                        <option value="commute">commute</option>
+                    </select>
+                </div>
+            </section>
+            <section id="telework-info" class="telework-section displayNone">
+                <div id="no-commute" class="telework">
+                    <label for="telework" class="form-control">how many days per week do you telework?
+                        <input class="input-checkbox" type="checkbox" name="five-days-per-week" value="five-days-per-week"/>five days per week
+                    </label>
+                    <label for="telework">
+                        <input class="input-checkbox" type="checkbox" name="one-day-per-week" value="one-day-per-week"/>one day per week
+                    </label>
+                    <label for="telework">
+                        <input class="input-checkbox" type="checkbox" name="two-days-per-week" value="two-days-per-week"/>two days per week
+                    </label>
+                    <label for="telework">
+                        <input class="input-checkbox" type="checkbox" name="three-days-per-week" value="three-days-per-week"/>three days per week
+                    </label>
+                    <label for="telework">
+                        <input class="input-checkbox" type="checkbox" name="four-days-per-week" value="four-days-per-week"/>four days per week
+                    </label>
+                </div>
+            </section>
+            <section id="commute-info" class="commute-section displayNone">
+                <div id="car-commute" class="car">
+                    <label for="car" class="form-control">do you commute by car?</label>
+                    <select id="car" name="car" onchange="showNextQuestion(this)">
+                        <option selected="" value="">select option</option>
+                        <option value="yes">yes</option>
+                        <option value="no">no</option>
+                    </select>
+                </div>
+                <div id="fuel-info" class="fuel displayNone">
+                    <label for="fuel" class="form-control">what type of fuel do you use?</label>
+                    <select id="fuel" name="fuel">
+                        <option disabled="" selected="" value="">select option</option>
+                        <option value="gasoline">gasoline</option>
+                        <option value="electric">electric</option>
+                        <option value="hybrid">hybrid</option>
+                    </select>
+                </div>
+            </section>
+        </form>
+        <script src="scripts/show-hide.js"></script>
+    </body>
+</html>
