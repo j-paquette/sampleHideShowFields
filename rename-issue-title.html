@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="css/sample-css.css" />
+    <title>Solution Design Services (SDS) - New Client Request</title>
+  </head>
+  <body>
+    <h2>EWS Request Form</h2>
+    <p>
+      Please note that this request, if fulfilled, will provide the application
+      group with a domain service account. <br />
+      It then becomes the responsibility of the application group to handle the
+      service account in an appropriate manner.<br />
+      Best practices dictate that network credentials stored in configuration
+      files should always be encrypted.
+    </p>
+    <p>
+      Required fields are followed by
+      <strong><abbr title="required">*</abbr></strong
+      >.
+    </p>
+
+    <div class="container">
+      <form id="mainForm">
+        <fieldset>
+          <legend>Request Type</legend>
+          <div class="row">
+            <div class="col-25">
+              <label for="frmCltRequestType"
+                >What type of Request do you need?<strong
+                  ><abbr title="required">*</abbr></strong
+                ></label
+              >
+            </div>
+            <div class="col-75">
+              <select class="client-request-type"
+                id="frmCltRequestType"
+                name="frmCltRequestType"
+              >
+                <option disabled="" selected="" value="">Select one..</option>
+                <option value="newNonProd">New request - Non-Production</option>
+                <option value="modifyNonProd">Modify request - Non-Production</option>
+                <option value="newProd">New request - Production</option>
+                <option value="modifyProd">Modify request - Production</option>
+              </select>
+            </div>
+          </div>
+        </fieldset>
+        <br />
+        <div class="row">
+          <input type="submit" id="submit" value="Submit" />
+        </div>
+      </form>
+    </div>
+    <script src="scripts/rename-issue-title.js"></script>
+  </body>
+</html>

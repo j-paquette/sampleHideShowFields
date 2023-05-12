@@ -32,11 +32,23 @@
             <section id="telework-info" class="telework-section displayNone">
                 <div id="no-commute" class="telework">
                     <label for="telework" class="form-control">how many days per week do you telework?
-                        <input class="input-checkbox" type="checkbox" name="five-days-per-week" value="five-days-per-week"/>five days per week
                     </label>
+                    <label for="telework">
+                        <input id="five-days-per-week" class="input-checkbox" type="checkbox" name="five-days-per-week" value="five-days-per-week" onchange="enterTotalHours(this)"/>five days per week
+                    </label>
+                    <div id="input-hours-five-days" class="input-hours displayNone">
+                        <label for="hours-five-days">The number of hours?
+                            <input class="input-hours" type="number" id="hours-five-days" name="hours-five-days" placeholder="From 1 to 40" />
+                        </label>
+                    </div>
                     <label for="telework">
                         <input class="input-checkbox" type="checkbox" name="one-day-per-week" value="one-day-per-week"/>one day per week
                     </label>
+                    <div id="input-hours-one-day" class="input-hours displayNone">
+                        <label for="hours-one-day">The number of hours?
+                            <input class="input-hours" type="number" id="hours-one-day" name="hours-one-day" placeholder="From 1 to 8" />
+                        </label>
+                    </div>
                     <label for="telework">
                         <input class="input-checkbox" type="checkbox" name="two-days-per-week" value="two-days-per-week"/>two days per week
                     </label>

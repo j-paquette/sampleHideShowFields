@@ -1,0 +1,115 @@
+/* 
+Follow the table stack order to not override styles: https://css-tricks.com/complete-guide-table-element/#aa-the-table-stack
+*/
+
+* {
+    box-sizing: border-box;
+}
+
+/* table {
+    table-layout: fixed;
+    border-collapse: collapse;
+    width: 100%;
+} */
+
+table {
+    table-layout: fixed;
+    border-collapse: collapse;
+    width: 70%;
+    margin-left: 15%;
+    margin-right: 15%;
+}
+
+
+th, td {
+    padding: 0.25rem;
+    text-align: left;
+    border: 1px solid #ccc;
+}
+
+/* table {
+    border-collapse: separate;
+    border-spacing: 0;
+    color: #4a4a4d;
+    font: 14px/1.4 "Helvetica Neue", Helvetica, Arial, sans-serif;
+} */
+
+/* th,
+td {
+    padding: 10px 15px;
+    vertical-align: middle;
+} */
+
+thead {
+    background: #395870;
+    color: #fff;
+}
+
+th {
+    border-bottom: 1px solid #cecfd5;
+    border-right: 1px solid #cecfd5;
+    border-left: 1px solid #cecfd5;
+}
+
+th:first-child {
+    text-align: left;
+}
+
+/*zebra-striping tables*/
+tbody tr:nth-child(even) {
+    background: #f0f0f2;
+}
+
+/*Row highlighting */
+tbody tr:hover {
+    background:rgb(236, 239, 200);
+}
+
+td {
+    border-bottom: 1px solid #cecfd5;
+    border-right: 1px solid #cecfd5;
+}
+
+td:first-child {
+    border-left: 1px solid #cecfd5;
+}
+
+.table-title {
+    color: #395870;
+}
+
+
+tfoot {
+    text-align: right;
+}
+
+tfoot tr:last-child {
+    background: #f0f0f2;
+}
+
+.client-issue-description {
+    display: table;
+    flex-wrap: wrap;
+    gap: 1em;
+
+}
+
+info-table {
+    border-collapse: collapse;
+    border-spacing: 0;
+    display: table;
+}
+
+/*Client Info colours */
+.info-table.app-info,
+.info-table.contact-info,
+.info-table.ews-info,
+.info-table.calls-info {
+    background-color: rgb(200, 213, 239);
+}
+
+/*Sds info colours */
+.info-table.sds-info {
+    background-color: rgb(156, 218, 178);
+  }
+

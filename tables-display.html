@@ -1,0 +1,255 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Sample Web Form</title>
+    <link rel="stylesheet" href="css/tables-css.css" />
+    <!-- <link rel="stylesheet" href="css/tablesfull-width.css" /> -->
+  </head>
+  <body>
+    <section class="client-issue-description">
+      <table class="info-table app-info table-title">
+        <thead>
+          <tr id="gcdCltAppInfo" scope="column">
+            <th>Application Info</th>
+            <th>&nbsp;</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <th scope="row">Application Environment</th>
+            <td class="table-data" id="gcdCltRequestType">newProd</td>
+          </tr>
+          <tr>
+            <th scope="row">CSD Application Name</th>
+            <td class="table-data" id="gcdCltCsdName">
+              test base Url Origin 1
+            </td>
+          </tr>
+          <tr>
+            <th scope="row">CSD Acronym</th>
+            <td class="table-data" id="gcdCltCsdAcronym">TBUO1</td>
+          </tr>
+          <tr>
+            <th scope="row">Application Description</th>
+            <td class="table-data" id="gcdCltAppDesc"></td>
+          </tr>
+          <tr>
+            <th scope="row">Project Url in the CSD</th>
+            <td class="table-data" id="gcdCltCsdUrl" target="_blank"></td>
+          </tr>
+          <tr>
+            <th scope="row">Project Team Name</th>
+            <td class="table-data" id="gcdCltTeamName">TBUO1 team</td>
+          </tr>
+          <tr>
+            <th scope="row">Application Distribution List</th>
+            <td class="table-data" id="gcdCltTeamDistList">TBUO1-GD</td>
+          </tr>
+          <tr>
+            <th scope="row">Application Version</th>
+            <td class="table-data" id="gcdCltAppVersion">1.0</td>
+          </tr>
+          <tr>
+            <th scope="row">Application RFC (ANPR)</th>
+            <td id="gcdCltAppAnpr">2369</td>
+          </tr>
+          <tr>
+            <th scope="row">Expected Implementation Date</th>
+            <td class="table-data" id="gcdCltImplementDate">2023-05-19</td>
+          </tr>
+          <tr>
+            <th scope="row">Application Type</th>
+            <td class="table-data" id="gcdCltAppType">webService</td>
+          </tr>
+          <tr>
+            <th scope="row">Application Zone</th>
+            <td class="table-data" id="gcdCltAppZone">internet</td>
+          </tr>
+          <tr>
+            <th scope="row">Application in Production</th>
+            <td class="table-data" id="gcdCltExistInProd">no</td>
+          </tr>
+          <tr>
+            <th scope="row">Week-Day Support Hours</th>
+            <td class="table-data" id="gcdCltAppSupportWeekday"></td>
+          </tr>
+          <tr>
+            <th scope="row">Week-End Support Hours</th>
+            <td class="table-data" id="gcdCltAppSupportWeekend"></td>
+          </tr>
+          <tr>
+            <th scope="row">Criticality Classification</th>
+            <td class="table-data" id="gcdCltCriticality"></td>
+          </tr>
+          <tr>
+            <th scope="row">Incident Support Coverage</th>
+            <td class="table-data" id="gcdCltSupportCoverage"></td>
+          </tr>
+          <tr>
+            <th scope="row">Application Hosting Site</th>
+            <td class="table-data" id="gcdCltAppHostSite"></td>
+          </tr>
+          <tr>
+            <th scope="row">Database Hosting Site</th>
+            <td class="table-data" id="gcdCltDbHostSite"></td>
+          </tr>
+          <tr>
+            <th scope="row">Application Usage Details</th>
+            <td class="table-data" id="gcdCltAppUsageDetails"></td>
+          </tr>
+        </tbody>
+      </table>
+      <p></p>
+      <table class="info-table contact-info table-title">
+        <thead>
+          <tr id="gcdCltContactInfo" scope="column">
+            <th>Contact Information</th>
+            <th>Contact Name</th>
+            <th>Contact Email</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <th scope="row">Director</th>
+            <td class="table-data" id="gcdCltDirName"></td>
+            <td class="table-data" id="gcdCltDirEmail"></td>
+          </tr>
+          <tr>
+            <th scope="row">Manager</th>
+            <td class="table-data" id="gcdCltMgrName">Manager Name</td>
+            <td class="table-data" id="gcdCltMgrEmail">
+              manager.name@hrsdc-rhdcc.gc.ca
+            </td>
+          </tr>
+          <tr>
+            <th scope="row">Team Lead</th>
+            <td class="table-data" id="gcdCltTlName"></td>
+            <td class="table-data" id="gcdCltTlEmail"></td>
+          </tr>
+          <tr>
+            <th scope="row">Additional Contact</th>
+            <td class="table-data" id="gcdCltAddNames"></td>
+            <td class="table-data" id="gcdCltAddMails"></td>
+          </tr>
+        </tbody>
+      </table>
+      <p></p>
+      <table class="info-table ews-info table-title">
+        <thead>
+          <tr id="gcdCltEwsInfo" scope="column">
+            <th>Web Service Information</th>
+            <th>&nbsp;</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <th scope="row">Service Account Name</th>
+            <td class="table-data" id="gcdCltExistingAcctName"></td>
+          </tr>
+          <tr>
+            <th scope="row">Which service(s) do you need access to?</th>
+            <td class="table-data" id="gcdCltEwsServices">
+              wsaddress,wsdblink
+            </td>
+          </tr>
+          <tr>
+            <th scope="row">WSEMail Access Type</th>
+            <td class="table-data" id="gcdCltWsemailAccessType"></td>
+          </tr>
+          <tr>
+            <th scope="row">WSED Access Type</th>
+            <td class="table-data" id="gcdCltWsedAccessType"></td>
+          </tr>
+          <tr>
+            <th scope="row">Should EWS Account Expire?</th>
+            <td class="table-data" id="gcdCltEwsExpire">no</td>
+          </tr>
+          <tr>
+            <th scope="row">EWS Expiry Date (YYYY-MM-YY)</th>
+            <td class="table-data" id="gcdCltEwsExpiryDate"></td>
+          </tr>
+        </tbody>
+      </table>
+      <p></p>
+      <table class="info-table calls-info table-title">
+        <thead>
+          <tr id="gcdCltNumberOfCalls" scope="column">
+            <th>Number of Calls</th>
+            <th>WSAddress</th>
+            <th>WSEMail</th>
+            <th>WSED</th>
+            <th>WSBLink</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <th scope="row"># Of Expected Week-end Calls</th>
+            <td class="table-data" id="gcdCltWsaddressWeekendCalls">100</td>
+            <td class="table-data" id="gcdCltWsemailWeekendCalls">200</td>
+            <td class="table-data" id="gcdCltWsedWeekendCalls">300</td>
+            <td class="table-data" id="gcdCltWsdblinkWeekendCalls">2</td>
+          </tr>
+          <tr>
+            <th scope="row"># Of Expected Week-day Calls</th>
+            <td class="table-data" id="gcdCltWsaddressWeekdayCalls">3</td>
+            <td class="table-data" id="gcdCltWsemailWeekdayCalls">20</td>
+            <td class="table-data" id="gcdCltWsedWeekdayCalls">43</td>
+            <td class="table-data" id="gcdCltWsdblinkWeekdayCalls">50</td>
+          </tr>
+          <tr>
+            <th scope="row"># Of Expected Busy Calls</th>
+            <td class="table-data" id="gcdCltWsaddressBusyCalls">36</td>
+            <td class="table-data" id="gcdCltWsemailBusyCalls">85</td>
+            <td class="table-data" id="gcdCltWsedBusyCalls">95</td>
+            <td class="table-data" id="gcdCltWsdblinkBusyCalls">105</td>
+          </tr>
+        </tbody>
+      </table>
+      <p></p>
+      <table class="info-table sds-info table-title">
+        <thead>
+          <tr id="gcdSdsInfo" scope="column">
+            <th>SDS Info</th>
+            <th>&nbsp;</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <th scope="row">Service Account Name</th>
+            <td class="table-data" id="gcdSdsServiceAcctName">SV-SF-TBUO1</td>
+          </tr>
+          <tr>
+            <th scope="row">Add Service Account Group</th>
+            <td class="table-data" id="gcdSdsAcctGroupAdd">
+              NA-SF-WSADDRESS, NA-SF-WSDBLINK
+            </td>
+          </tr>
+          <tr>
+            <th scope="row">Remove Service Account Group</th>
+            <td class="table-data" id="gcdSdsAcctGroupRemove"></td>
+          </tr>
+          <tr>
+            <th scope="row">Add WSED Attributes</th>
+            <td class="table-data" id="gcdSdsWsedAttributes">read</td>
+          </tr>
+          <tr>
+            <th scope="row">
+              Service Account Name & Password to be sent to the Manager:
+            </th>
+            <td class="table-data" id="gcdSdsPasswordEmail">
+              manager.name@hrsdc-rhdcc.gc.ca
+            </td>
+          </tr>
+          <tr>
+            <th scope="row">SDS Member contact:</th>
+            <td class="table-data" id="gcdSdsMemberEmail">
+              josee.n.paquette@hrsdc-rhdcc.gc.ca
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </section>
+  </body>
+</html>

@@ -19,6 +19,26 @@ function chooseSurveyType(answer){
     }
 }
 
+/**
+ * This function shows the following option, only if the user has checked the checkbox item:
+ * checkbox item unchecked: the number of hours input field is hidden
+ * checkbox item checked: the number of hours input field is displayed
+ */
+function enterTotalHours(checkBoxElement) {
+    //get the value of the checkbox
+    const checkBoxChecked = checkBoxElement.checked;
+
+    //get the div to act on
+    const checkedElements = document.querySelectorAll("div.input-hours")
+
+    checkedElements.forEach(checkedElement => {
+        //This shows the commuting questions
+        document.getElementById("input-hours-fulltime").classList.remove("displayNone");
+        //in case the user has previously checked "five-days-per-week", then unchecks afterwards
+        document.getElementById("input-hours-fulltime").classList.add("displayNone");
+    });   
+
+}
 
 /**
  * This function shows the following question, depending on the selected answer:

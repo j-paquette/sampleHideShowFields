@@ -94,5 +94,17 @@ form {
 
 /*This is to hide/show selected field*/
 .displayNone {
-    display: none;
+    display: none !important;
 }
+
+/*TODO: Should i use this instead? do i want a visually impaired client to see a hidden question,
+ if they didn't select for it?
+/*This class should position the content off-screen, but is still screen-reader accessible.
+reference: https://css-tricks.com/places-its-tempting-to-use-display-none-but-dont/ */
+/*
+.displayNone {
+    position: absolute !important;
+    top: -9999px !important;
+    left: -9999px !important;
+}
+*/
