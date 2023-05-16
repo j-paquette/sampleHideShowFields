@@ -1,3 +1,5 @@
+
+
 /**
  * This function gets issue in GCcode by issueID
  * @param {*} issueId 
@@ -24,10 +26,14 @@ async function fetchIssue(issueId){
     
         const issueData = await response.json();
 
-        const newTitleIssueata = changeRequestTitle(issueData);
+        //extract the client's application description and add it to the new paragraph section
+        extractFromDescription(issueData);
 
-        //return issueData;
-        return newTitleIssueata;
+        const newTitleIssueData = changeRequestTitle(issueData);
+
+        return newTitleIssueData;
+
+        
     }
 
 
@@ -64,18 +70,6 @@ function reorderSscData(issueData) {
     console.log("final issue.description: ", issueData.description);
         
     }  
-
-
-// /**
-//  * This function gets the current Url and extracts the issueId.
-//  * @returns issueIdParam
-//  */ 
-// function getCurrentIssueId(){
-//     const urlParams = new URLSearchParams(window.location.search);
-//     const issueIdParam = urlParams.get("issueId");
-  
-//     return issueIdParam;
-// }
 
 
 /**
@@ -203,46 +197,6 @@ function changeRequestTitle(issue) {
     console.log("new issue: ", issue);
 
     return issue;
-
-
-    //console.log("new parsedIssue: ", parsedIssue);
-    //console.log("new issue title: ", parsedIssue.title);
-
-    //change the request title
-    // if(parsedIssueTitle.includes("newProd")){
-    //     parsedIssueTitle = "Request for a New Service Account to call the Software Factory enterprise web services Environment: Production";
-    //     console.log("updated parsedIssueTitle: ", parsedIssueTitle);
-    //     console.log("new parsedIssue: ", parsedIssue);
-    //     //newParsedIssue = JSON.parse(stringifiedIssue);
-    //     //console.log("newParsedIssue: ", newParsedIssue);
-    // }
-    // else {
-    //     console.log("your request type is invalid");
-    // }
-    
-
-    //change the name, depending on the selected requestType
-    // switch (stringifiedIssueTitle){
-    //     case stringifiedIssueTitle.includes("newNonProd"):
-    //         stringifiedIssueTitle = "Request for a New Service Account to call the Software Factory enterprise web services Environment: Non-Production";
-    //         newParsedIssueTitle = JSON.parse(stringifiedIssueTitle);
-    //         break;
-    //     case stringifiedIssueTitle.includes("modifyNonProd"):
-    //         stringifiedIssueTitle = "Request to Modify the Access of a Service Account to call the Software Factory enterprise web services Environment: Non-Production";
-    //         newParsedIssueTitle = JSON.parse(stringifiedIssueTitle);
-    //         break;
-    //     case stringifiedIssueTitle.includes("newProd"):
-    //         stringifiedIssueTitle = "Request for a New Service Account to call the Software Factory enterprise web services Environment: Production";
-    //         newParsedIssueTitle = JSON.parse(stringifiedIssueTitle);
-    //         break;
-    //     case stringifiedIssueTitle.includes("modifyProd"):
-    //         stringifiedIssueTitle = "Request to Modify the Access of a Service Account to call the Software Factory enterprise web services Environment: Production";
-    //         newParsedIssueTitle = JSON.parse(stringifiedIssueTitle);
-    //         break;
-    //     default:
-    //         console.log("your request type is invalid");
-    // }
-
 }
 
 
@@ -250,11 +204,11 @@ function changeRequestTitle(issue) {
 This function loads the client data from GCcode Issue triggered by DOMContentLoaded.
 */
 async function onSSCLoad() {
-    const issueId = 215;
+    const issueId = 227;
 
     const issueData = await fetchIssue(issueId); 
 
-    //changeRequestTitle(issueData); 
+    
     reorderSscData(issueData);
     populateSscSection(issueData);
     
