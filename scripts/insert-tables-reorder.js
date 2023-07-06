@@ -1,4 +1,108 @@
+/**
+    This function gets the form data entered by the user (as a parameter) and returns issueData.
+    @param formValue The web form data formatted to html tables
+   */
+    getIssueData(formValue) {
+        const issueDataGCcode = {
+        title: `${issueDataTitlesMap[formValue.frmCltRequestType] || "undefined title"}; Services: ${formValue.frmCltEwsServices}`,
+        confidential: "true",
+        labels: `New, ${formValue.frmCltRequestType}, ${formValue.frmCltEwsServices} `,
+        description: `${formValue.frmCltAppDesc}<p>
+        <table class="info-table app-info">
+            <thead>
+                <tr id="gcdCltAppInfo" scope="column">
+                    <th>Application Info</th>
+                    <th>&nbsp;</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <th scope="row">Application Environment</th>
+                    <td id="gcdCltRequestType">${formValue.frmCltRequestType || ""}</td>
+                </tr>
+                <tr>
+                    <th scope="row">CSD Application Name</th>
+                    <td id="gcdCltCsdName">${formValue.frmCltCsdName || ""}</td>
+                </tr>
+                <tr>
+                    <th scope="row">CSD Acronym</th>
+                    <td id="gcdCltCsdAcronym">${formValue.frmCltCsdAcronym || ""}</td>
+                </tr>            
+                <tr>
+                    <th scope="row">Application Description</th>
+                    <td id="gcdCltAppDesc">${formValue.frmCltAppDesc || ""}</td>
+                </tr>            
+                <tr>
+                    <th scope="row">Project Url in the CSD</th>
+                    <td id="gcdCltCsdUrl" target="_blank">${formValue.frmCltCsdUrl || ""}</td>
+                </tr>  
+                <tr>
+                    <th scope="row">Project Team Name</th>
+                    <td id="gcdCltTeamName">${formValue.frmCltTeamName || ""}</td>
+                </tr> 
+                <tr>
+                    <th scope="row">Application Distribution List</th>
+                    <td id="gcdCltTeamDistList">${formValue.frmCltTeamDistList || ""}</td>
+                </tr>                                 
+                <tr>
+                    <th scope="row">Application Version</th>
+                    <td id="gcdCltAppVersion">${formValue.frmCltAppVersion || ""}</td>
+                </tr>
+                <tr>
+                    <th scope="row">Application RFC (ANPR)</th>
+                    <td id="gcdCltAppAnpr">${formValue.frmCltAppAnpr || ""}</td>
+                </tr>            
+                <tr>
+                    <th scope="row">Expected Implementation Date</th>
+                    <td id="gcdCltImplementDate">${formValue.frmCltImplementDate || ""}</td>
+                </tr>                                                   
+                <tr>
+                    <th scope="row">Application Type</th>
+                    <td id="gcdCltAppType">${formValue.frmCltAppType || ""}</td>
+                </tr>
+                <tr>
+                    <th scope="row">Application Zone</th>
+                    <td id="gcdCltAppZone">${formValue.frmCltAppZone || ""}</td>
+                </tr>
+                <tr>
+                    <th scope="row">Application in Production</th>
+                    <td id="gcdCltExistInProd">${formValue.frmCltExistInProd || ""}</td>
+                </tr>
+                <tr>
+                    <th scope="row">Week-Day Support Hours</th>
+                    <td id="gcdCltAppSupportWeekday">${formValue.frmCltAppSupportWeekday || ""}</td>
+                </tr>
+                <tr>
+                    <th scope="row">Week-End Support Hours</th>
+                    <td id="gcdCltAppSupportWeekend">${formValue.frmCltAppSupportWeekend || ""}</td>
+                </tr>
+                <tr>
+                    <th scope="row">Criticality Classification</th>
+                    <td id="gcdCltCriticality">${formValue.frmCltCriticality || ""}</td>
+                </tr>
+                <tr>
+                    <th scope="row">Incident Support Coverage</th>
+                    <td id="gcdCltSupportCoverage">${formValue.frmCltSupportCoverage || ""}</td>
+                </tr>
+                <tr>
+                    <th scope="row">Application Hosting Site</th>
+                    <td id="gcdCltAppHostSite">${formValue.frmCltAppHostSite || ""}</td>
+                </tr>
+                <tr>
+                    <th scope="row">Database Hosting Site</th>
+                    <td id="gcdCltDbHostSite">${formValue.cltDbHostSite || ""}</td>
+                </tr> 
+                <tr>
+                    <th scope="row">Application Usage Details</th>
+                    <td id="gcdCltAppUsageDetails">${formValue.frmCltAppUsageDetails || ""}</td>
+                </tr>                                                                                                                       
+            </tbody>
+        </table>
+    </p>`};
 
+    console.log("issue data: ", issueDataGCcode);
+    return issueDataGCcode;
+}
 
 /**
  * This function gets issue in GCcode by issueID
@@ -6,35 +110,78 @@
  * @returns issueData
  */
 async function fetchIssue(issueId){        
-    //initialize the new request object
-    //TODO: replace hard-coded project id 
-    const requestUrl = `https://gccode.ssc-spc.gc.ca/api/v4/projects/11015/issues/${issueId}`;
+//initialize the new request object
+//TODO: replace hard-coded project id 
+const requestUrl = `https://gccode.ssc-spc.gc.ca/api/v4/projects/11015/issues/${issueId}`;
 
-    const request = new Request(requestUrl, {
-        method: 'GET',
-        cache: 'default',
-        headers: {
-            'Content-Type': 'application/json',
-            //Uses Project Access token which grants access as role of "Maintainer" 
-            //with scope=api (Grants complete read/write access to the API, including all groups and projects, the container registry, and the package registry.) a new issue thru the GitLab API
-            //Private token below points to sdsCreate1 personal access token in GCcode (expires 2023june30):
-            'PRIVATE-TOKEN': 'glpat-Dpk5gv43PqyTFFe1SVaR'
-            },  
-    });
-        //to get the json data
-        const response = await fetch(request);
+const request = new Request(requestUrl, {
+    method: 'GET',
+    cache: 'default',
+    headers: {
+        'Content-Type': 'application/json',
+        //Uses Project Access token which grants access as role of "Maintainer" 
+        //with scope=api (Grants complete read/write access to the API, including all groups and projects, the container registry, and the package registry.) a new issue thru the GitLab API
+        //Private token below points to sdsCreate1 personal access token in GCcode (expires 2023june30):
+        'PRIVATE-TOKEN': 'glpat-Dpk5gv43PqyTFFe1SVaR'
+        },  
+});
+    //to get the json data
+    const response = await fetch(request);
+
+    const issueData = await response.json();
+
+    const newTitleIssueData = changeRequestTitle(issueData);
+    console.log("fetchIssue newTitleIssueData: ", newTitleIssueData);
+
+    return newTitleIssueData;
+
     
-        const issueData = await response.json();
+}
 
-        //extract the client's application description and add it to the new paragraph section
-        extractFromDescription(issueData);
 
-        const newTitleIssueData = changeRequestTitle(issueData);
-
-        return newTitleIssueData;
-
-        
-    }
+/**
+This function gets the form data entered by the user (as a parameter) and returns issueData.
+Add sectionStartTag and sectionEndTag to the original client data (getIssueData??), 
+to wrap around the client info data tables  want to keep together.
+Then extract the paragraph from the client's application description.
+Then store it as a separate variable(?), that can be placed anywhere i choose.
+Then insert that variable in getIssueData, before the client data tables.
+This way, if the tables are ordered differently, the client's application description will always remain at the top.
+string split into an array of strings: https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String/split
+@param issueData The web form data formatted to html tables
+*/
+function extractText(issueData, formValue) {
+    //const formValue = "TSSCR11 application description I entered";
+    //console.log("formValue: ", formValue);
+  
+    const indexStart = issueData.description.indexOf(formValue.frmCltAppDesc, 0);
+    console.log("indexStart: ", indexStart);
+    const indexEnd = issueData.description.indexOf(`<p>`);
+    console.log("indexEnd: ", indexEnd);
+    //extract the clientText from description value
+    const clientText = issueData.description.substring(indexStart, indexEnd);
+    console.log("clientText: ", clientText);
+  
+    //create section tags, to mark the start and end of the html client tables
+  const sectionStartTag = "<!--client-section-start-->";
+  const sectionEndTag = "<!--client-section-end-->";
+  
+  if(issueData.description.includes(sectionStartTag)){
+      const indexClientTableStart = issueData.description.indexOf(sectionStartTag);
+      console.log("indexClientTableStart: ", indexClientTableStart);
+      const indexClientTableEnd = issueData.description.indexOf(sectionEndTag) + sectionEndTag.length;
+      console.log("indexClientTableEnd: ", indexClientTableEnd);
+  }
+  
+  
+  //replace clientText with an empty string
+  const clientTables = issueData.description.replace(clientText, ``);
+  console.log("clientTables: ", clientTables);
+  //wrap the html client tables inside a sectionStartTag and sectionEndTag
+  const newClientTables = sectionStartTag.concat(clientTables, sectionEndTag);
+  console.log("newClientTables: ", newClientTables);
+  
+}
 
 
 /**
@@ -50,14 +197,11 @@ function reorderSscData(issueData) {
     
     //Where the Sds table string begins
     const startIndex = issueData.description.indexOf(sectionStartTag);
-    console.log("startIndex: ", startIndex);
     //Returns the starting point of the end of the string. sectionEndTag.length will return the end of the string
     const endIndex = issueData.description.indexOf(sectionEndTag) + sectionEndTag.length;
-    console.log("endIndex: ", endIndex);
 
     //this selects only the Sds data table
     const sdsTable = issueData.description.substring(startIndex) + issueData.description.substring(endIndex);
-    console.log("sdsTable: ", sdsTable);
 
     //this selects only the client data tables (no Sds table)
     issueData.description = issueData.description.substring(0, startIndex) + issueData.description.substring(endIndex);
@@ -66,9 +210,7 @@ function reorderSscData(issueData) {
     const newDescription = sdsTable.concat(issueData.description);
 
     //This will return the Sds table, client tables in the new order
-    issueData.description = newDescription;
-    console.log("final issue.description: ", issueData.description);
-        
+    issueData.description = newDescription;        
     }  
 
 
@@ -96,6 +238,10 @@ function populateSscSection(issue){
     const myPara3 = document.createElement('p');
     myPara3.textContent = `Assignee: ${issue.assignee}`;
     section.appendChild(myPara3);
+
+    const myPara4 = document.createElement('p');
+    myPara4.textContent = `Application Description: ${issue.clientText}`;
+    section.appendChild(myPara4);
   
     const myTable = document.createElement('div');
     myTable.innerHTML = issue.description;
@@ -111,7 +257,6 @@ function changeRequestTitle(issue) {
     //the value doesn't exist
     //let newParsedIssueTitle = "";
     //get the whole issue object
-    console.log("issue: ", issue);
     
     //const stringifiedIssue = JSON.stringify(issue);
     //console.log("stringifiedIssue: ", stringifiedIssue);
@@ -132,70 +277,6 @@ function changeRequestTitle(issue) {
     }
 
     issue.title = titlesMap[envrionmentName] || "undefined title";
-
-
-    // switch(envrionmentName){
-    //     case "newProd":
-    //         issue.title = "Request for a New Service Account to call the Software Factory enterprise web services Environment: Production";
-    //         break;
-    //     case "modifyProd":
-    //         issue.title = "Request to Modify the Access of a Service Account to call the Software Factory enterprise web services Environment: Production";
-    //         break;
-    //     case "newNonProd":
-    //         issue.title = "Request for a New Service Account to call the Software Factory enterprise web services Environment: Non-Production";
-    //         break;
-    //     case "modifyNonProd":
-    //         issue.title = "Request to Modify the Access of a Service Account to call the Software Factory enterprise web services Environment: Non-Production";
-    //         break;
-    //     default:
-    //         throw new Error("your request type is invalid");
-    // }
-
-
-    // if(envrionmentName === "newProd"){
-    //     issue.title = "Request for a New Service Account to call the Software Factory enterprise web services Environment: Production";
-    // }
-    // else if(envrionmentName === "modifyProd"){
-    //     issue.title = "Request to Modify the Access of a Service Account to call the Software Factory enterprise web services Environment: Production";
-    // }
-    // else if(envrionmentName === "newNonProd"){
-    //     issue.title = "Request for a New Service Account to call the Software Factory enterprise web services Environment: Non-Production";
-    // }
-    // else if(envrionmentName === "modifyNonProd"){
-    //     issue.title = "Request to Modify the Access of a Service Account to call the Software Factory enterprise web services Environment: Non-Production";
-    // }
-    // else {
-    //     throw new Error("your request type is invalid");
-    // }
-
-    // let issueString = JSON.stringify(issue);
-    // let parsedIssue = JSON.parse(issueString, function(key, value){
-    //     if(key === "title"){
-    //         if(value.includes("newProd")){
-    //             return "Request for a New Service Account to call the Software Factory enterprise web services Environment: Production";
-    //         }
-    //         else if(value.includes("modifyProd")){
-    //             return "Request to Modify the Access of a Service Account to call the Software Factory enterprise web services Environment: Production";
-    //         }
-    //         else if(value.includes("newNonProd")){
-    //             return "Request for a New Service Account to call the Software Factory enterprise web services Environment: Non-Production";
-    //         }
-    //         else if(value.includes("modifyNonProd")){
-    //             return "Request to Modify the Access of a Service Account to call the Software Factory enterprise web services Environment: Non-Production";
-    //         }
-    //         else {
-    //             return "your request type is invalid";
-    //         }
-    //     }
-    //     return value;
-    // });
-    //original issue: before the change
-    //console.log("old issue: ", issue);
-
-    //assign parsedIssue to replace issue
-    //issue = parsedIssue;
-    console.log("new issue: ", issue);
-
     return issue;
 }
 
@@ -204,11 +285,11 @@ function changeRequestTitle(issue) {
 This function loads the client data from GCcode Issue triggered by DOMContentLoaded.
 */
 async function onSSCLoad() {
-    const issueId = 227;
-
+    
+    const issueId = 231;
     const issueData = await fetchIssue(issueId); 
 
-    
+    extractText(issueData);
     reorderSscData(issueData);
     populateSscSection(issueData);
     

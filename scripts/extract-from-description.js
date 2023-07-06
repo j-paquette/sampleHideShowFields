@@ -107,42 +107,65 @@ function getIssueData() {
     return issueDataGCcode;
 }
       
-/**
-This function creates a new issue in GCcode using the GitLab API, and return await response.json()
-@param formValue The web form data and format it into HTML tables
-*/
-async function createIssue(formValue) {
+// /**
+// This function creates a new issue in GCcode using the GitLab API, and return await response.json()
+// @param formValue The web form data and format it into HTML tables
+// */
+// async function createIssue(formValue) {
 
-const issueData = this.getIssueData(formValue);
+// const issueData = this.getIssueData(formValue);
 
-const response = await fetch('https://gccode.ssc-spc.gc.ca/api/v4/projects/11015/issues', {
-    method: 'POST',
-    cache: 'default',
-    headers: {
-        'Content-Type': 'application/json',
-        //Uses Project Access token which grants access as role of "Maintainer" 
-        //with scope=api (Grants complete read/write access to the API, including all groups and projects, the container registry, and the package registry.) a new issue thru the GitLab API
-        //Private token below points to sdsCreate1 personal access token in GCcode (expires 2023june30):
-        'PRIVATE-TOKEN': 'glpat-Dpk5gv43PqyTFFe1SVaR'
-        },
-        //stringify only the issue body info
-        body: JSON.stringify(issueData),
-    });
+// const response = await fetch('https://gccode.ssc-spc.gc.ca/api/v4/projects/11015/issues', {
+//     method: 'POST',
+//     cache: 'default',
+//     headers: {
+//         'Content-Type': 'application/json',
+//         //Uses Project Access token which grants access as role of "Maintainer" 
+//         //with scope=api (Grants complete read/write access to the API, including all groups and projects, the container registry, and the package registry.) a new issue thru the GitLab API
+//         //Private token below points to sdsCreate1 personal access token in GCcode (expires 2023june30):
+//         'PRIVATE-TOKEN': 'glpat-Dpk5gv43PqyTFFe1SVaR'
+//         },
+//         //stringify only the issue body info
+//         body: JSON.stringify(issueData),
+//     });
 
-const responseData = await response.json();
+// const responseData = await response.json();
 
-return this.convertResponseValues(responseData);
-}
+// return this.convertResponseValues(responseData);
+// }
 
 
 
 /**
 This function gets the form data entered by the user (as a parameter) and returns issueData.
-@param formValue The web form data formatted to html tables
+Add sectionStartTag and sectionEndTag to the original client data (getIssueData??), 
+to wrap around the client info data tables  want to keep together.
+Then extract the paragraph from the client's application description.
+Then store it as a separate variable(?), that can be placed anywhere i choose.
+Then insert that variable in getIssueData, before the client data tables.
+This way, if the tables are ordered differently, the client's application description will always remain at the top.
+object destructuring: https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/Destructuring_assignment#object_destructuring
+@param issueData The web form data formatted to html tables
 */
 function extractText(issueData) {
     //const sectionStartTag = description.substring(0);
-    const sectionEndTag = `<p>`;
+    const sectionStartTag  = "<!--client-section-start-->";
+    const sectionEndTag = "<!--client-section-end-->";
+
+    //If description already has SDS section, remove it. In case someone submits SDS data that's already been submitted, or needs to update
+    if(issueData.description.includes(sectionStartTag)){
+        //Where the string begins
+        //TODO: create a new test project and play around with this code
+        const startIndex = issueData.description.indexOf(sectionStartTag);
+        //Returns the starting point of the end of the string. sectionEndTag.length will return the end of the string
+        const endIndex = issueData.description.indexOf(sectionEndTag) + sectionEndTag.length;
+
+        issueData.description = issueData.description.substring(0, startIndex) + issueData.description.substring(endIndex);
+    }
+
+    const clientDescription = issueData.description.concat(issueData);
+    console.log("extractText clientDescription: ", clientDescription);
+    //This will add the new SDS section
   
     //Where the application description section string begins
     //const startIndex = description.indexOf();
