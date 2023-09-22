@@ -17,7 +17,7 @@
                 </ul>
             </nav>
         </header>
-        <form>
+        <form id="mainForm" action="http://www.foo.com" method="post">
             <section id="user-info" class="user-section">
                 <div id="question-1" class="user">
                     <label for="user-commute" class="form-control">do you commute to work?
@@ -30,6 +30,12 @@
                 </div>
             </section>
             <section id="telework-info" class="telework-section displayNone">
+                <div class="telework" >
+                    <label class="form-control" for="commuteDate"><span class="field-name">When did you last work from home?</span><span class="datepicker-format">(YYYY-MM-DD)</span> </label>
+                    <div >
+                      <input id="commuteDate" class="form-control" type="date" date-rule-dateISO="true" name="commuteDate" placeholder="YYYY-MM-YY" onclick="onDateSelectedClick(this)" />
+                    </div>
+                </div>
                 <div id="no-commute" class="telework">
                     <label for="telework" class="form-control">how many days per week do you telework?
                     </label>
@@ -79,7 +85,11 @@
                     </select>
                 </div>
             </section>
+            <div class="submit-container">
+                <input class="btn btn-primary btn-lg" type="submit" id="btn-submit" value="Submit" />
+              </div>
         </form>
         <script src="scripts/show-hide.js"></script>
+        <script src="scripts/validate-input.js"></script>
     </body>
 </html>

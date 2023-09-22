@@ -1,0 +1,19 @@
+{
+  "name": "samplehideshowfields",
+  "version": "1.0.0",
+  "description": "sample app to test using selenium",
+  "main": "index.js",
+  "scripts": {
+    "test": "test"
+  },
+  "repository": {
+    "type": "git",
+    "url": "sampleHideShowFields"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "geckodriver": "^4.0.4",
+    "selenium-webdriver": "^4.10.0"
+  }
+}

@@ -111,5 +111,14 @@ info-table {
 /*Sds info colours */
 .info-table.sds-info {
     background-color: rgb(156, 218, 178);
-  }
+}
+
+/* https://wet-boew.github.io/v4.0-ci/demos/tables/tables-en.html#wb-auto-1
+got the info from here: https://www.datatables.net/examples/basic_init/multiple_tables.html */
+div.dataTables_wrapper {
+    margin-bottom: 3em;
+    width: 100%;
+}
+
+
 
